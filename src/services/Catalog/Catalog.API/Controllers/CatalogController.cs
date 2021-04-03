@@ -45,5 +45,44 @@ namespace Catalog.API.Controllers
             return Ok(product);
         }
 
+
+        [Route("[action]/{category}",Name ="GetProductByCategory")]
+        [HttpGet]
+        [ProducesResponseType( (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(IEnumerable<Product>),(int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategory(string category)
+        {
+            var products = await _repository.GetProductByCategory(category);
+            if (products == null)
+            {
+                _logger.LogError($"Product with category {category}, not found.");
+                return NotFound();
+            }
+
+            return Ok(products);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(Product),(int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
+        {
+            await _repository.CreateProduct(product);
+            return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
+        }
+
+        [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdateProduct(Product product)
+        {
+            return Ok(await _repository.UpdateProduct(product));
+        }
+
+        [HttpDelete("{id:length(24)}", Name = "DeleteProduct")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> DeleteProduct(string id)
+        {
+            return Ok(await _repository.DeleteProduct(id));
+        }
+
     }
 }
