@@ -27,10 +27,11 @@ namespace Catalog.API.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             var products = await _repository.GetProducts();
-            return Ok(products); 
+            return Ok(products);
+            
         }
 
-        [HttpGet("{id:length(24)}", Name = "GetProduct")]
+        [HttpGet("{id1:length(24)}", Name = "GetProduct")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Product>> GetProductById(string id)
