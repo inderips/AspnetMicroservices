@@ -2,20 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
-    <UserSecretsId>33c4f2f0-a0cb-4564-8826-adff2a0dc811</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="Npgsql" Version="5.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Repositories\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Protos\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <Protobuf Include="Protos\discount.proto" GrpcServices="Server">
+     
+    </Protobuf>
   </ItemGroup>
 </Project>
