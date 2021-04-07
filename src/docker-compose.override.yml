@@ -91,3 +91,16 @@ services:
 
     
   
+ basket.grpc:
+    container_name: basket.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=basketdb:6379"
+    ports:
+      - "8003:80"
+    depends_on:
+      - basketdb
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+

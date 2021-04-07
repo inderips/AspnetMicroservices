@@ -26,7 +26,7 @@ namespace Discount.Grpc.Extensions
                             command.CommandText = "DROP TABLE IF EXISTS \"Coupon\"";
                             command.ExecuteNonQuery();
 
-                             command.CommandText = "CREATE TABLE \"Coupon\"(\"ID\" SERIAL PRIMARY KEY,\"ProductName\" VARCHAR(24) NOT NULL, \"Description\" TEXT, \"Amount\" INT)";
+                            command.CommandText = "CREATE TABLE \"Coupon\"(\"ID\" SERIAL PRIMARY KEY,\"ProductName\" VARCHAR(24) NOT NULL, \"Description\" TEXT, \"Amount\" INT)";
                             command.ExecuteNonQuery();
 
                             command.CommandText = "INSERT INTO \"Coupon\" (\"ProductName\",\"Description\",\"Amount\") VALUES ('IPhone X','IPhone Discount', 150)";

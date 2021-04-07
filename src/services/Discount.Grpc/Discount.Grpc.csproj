@@ -2,12 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.36.0" />
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="Npgsql" Version="5.0.4" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,8 +18,15 @@
     <Folder Include="Extensions\" />
     <Folder Include="Protos\" />
     <Folder Include="Services\" />
+    <Folder Include="Mapper\" />
   </ItemGroup>
  
+  <ItemGroup>
+    <Protobuf Remove="Protos\discount.proto" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Protos\discount.proto" />
+  </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Protos\discount.proto" GrpcServices="Server">
      
